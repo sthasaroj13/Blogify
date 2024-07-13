@@ -66,6 +66,7 @@ const createPost = async (req, res, next) => {
       }
     );
   } catch (error) {
+    console.log(error.message);
     return next(new HttpError("error happen"));
   }
 };

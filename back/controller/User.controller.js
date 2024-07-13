@@ -104,7 +104,7 @@ const changeAvatar = async (req, res, next) => {
     if (!req.files.avatar) {
       return next(new HttpError("Please choose an image.", 422));
     }
-
+    console.log(req.files.avatar);
     // Find user from the database
     const user = await User.findById(req.user.id);
 
@@ -172,10 +172,10 @@ const editUser = async (req, res, next) => {
   try {
     const { name, email, currentpassword, newpassword, confirmNewPassword } =
       req.body;
-      if (!name || !email || !currentpassword || !newpassword) {
-        return next(new HttpError("Fill in all fields", 422));
-      }
-      
+    if (!name || !email || !currentpassword || !newpassword) {
+      return next(new HttpError("Fill in all fields", 422));
+    }
+
     //get user from DB
     const user = await User.findById(req.user.id);
     if (!user) {
